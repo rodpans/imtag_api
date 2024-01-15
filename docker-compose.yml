@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./DDL.sql:/docker-entrypoint-initdb.d/DDL.sql
+    environment:
+      MYSQL_DATABASE: Pictures
+      MYSQL_USER: mbit
+      MYSQL_PASSWORD: mbit
+      MYSQL_ROOT_PASSWORD: mbit
+    ports:
+      - "3306:3306"
+
+  api:
+    build: .
+    ports:
+      - "80:80" 
+    depends_on:
+      - db
+    volumes:
+      - image_data:/app/images
+    environment:
+      DATABASE_HOST: db
+      DATABASE_USER: mbit
+      DATABASE_PASSWORD: mbit
+      DATABASE_NAME: Pictures
+      PICTURES_PATH: images
+
+volumes:
+  db_data:
+  image_data:
