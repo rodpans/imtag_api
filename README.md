@@ -1,5 +1,24 @@
 # imtag_api
 
+Before following up, this API uses two services: ImageKit and Imaga, one for temporary picture storage and the other one for tag identification.
+You can easily replace them by your own custom solutions, but as this is a test I do not want to spend time doing that. YoloV5 can be an easy alternative to Imaga.
+To use those services you must provide credentials, so you must create a file named **credentials.json** inside app folder and provide your credentials with the following format.
+```
+{
+    "ImageKit_credentials" : {
+        "public_key" : "",
+        "private_key" : "",
+        "url_endpoint" : ""
+
+    },
+
+    "Imaga_credentials" : {
+        "public_key" : "",
+        "private_key" : "",
+        "url_endpoint" : ""
+    }
+}
+```
 This app is designed to be deployed using docker compose. You can just get it up and running by moving to your directory folder:
 
 ```
